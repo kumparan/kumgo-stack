@@ -1,17 +1,17 @@
-env: "development"
-hostname: "localhost"
-port: "9001"
-hello_service_target: "localhost:9002"
 arangodb:
-  host: "http://localhost:8529/_db/yowez/_api/cursor",
-  collections :
-    stories : "v1_stories",
-    users : "v1_users",
-    topic : "v1_topic",
-    publisherStory : "v1_publisherStory",
-    followTopicV2 : "v1_followTopicV2",
-    followUser : "v1_followUser",
-    reactions : "v1_reactions",
-    responses : "v1_responses",
-    userVotes : "v1_userVotes",
-    userShare : "v1_userShare"
+    collections:
+        followTopicV2: v1_followTopicV2
+        followUser: v1_followUser
+        publisherStory: v1_publisherStory
+        reactions: v1_reactions
+        responses: v1_responses
+        stories: v1_stories
+        topic: v1_topic
+        userShare: v1_userShare
+        userVotes: v1_userVotes
+        users: v1_users
+    host: 'http://localhost:8529/_db/yowez/_api/cursor'
+env: development
+hello_service_target: 'localhost:9002'
+hostname: localhost
+port: '9001'
