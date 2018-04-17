@@ -46,21 +46,40 @@ $ go get -u github.com/golang/protobuf/protoc-gen-go
 ```
 ### Installing Dep (Go Dependency Manager)
 You can follow the steps [here](https://github.com/golang/dep)
-### Run in your local
+## Story Service Example (with ArangoDB Connection)
+### Run the server in your local
 1. Make sure you already clone this repository in your `$GOPATH/src` folder.
 2. Install the dependencies by running `dep ensure` in your terminal.
-2. Compile the protobuf using `make proto`.
-3. Create a configuration file called `config.yml` in the root directory.
-4. You can copy the configuration in `config.yml.example` to your `config.yml`, or you also can change the config.
-5. Run the service using `make run`.
-6. You should see something like this:
+3. Compile the protobuf for the server example using `make proto`.
+4. Create a configuration file called `config.yml` in the root directory.
+5. You can copy the configuration in `config.yml.example` to your `config.yml`, or you also can change the config.
+6. Run the service using `make run`.
+7. You should see something like this:
+```shell
+INFO : Connection to Arango Server success...
+INFO : Connection to database success...
+INFO : Listening on 9001
+```
+### Test the client
+1. With the server running, open new terminal.
+2. Type `make story-client-example`. This command will create a new gRPC client of the server run in port 9001. The client will send a GetStories request to the server, and get the response from the server.
+3. You should see something like this:
+```shell
+INFO[0000] Echo result: i'm screaming
+```
+## Echo Example (without ArangoDB Connection)
+### Run the server in your local
+1. Make sure you already clone this repository in your `$GOPATH/src` folder.
+2. Install the dependencies by running `dep ensure` in your terminal.
+3. Compile the protobuf for the server example using `make echo-example-proto`.
+4. Run the service using `make echo-server-example`.
+5. You should see something like this:
 ```shell
 INFO[0000] Listening on 9001
 ```
-
 ### Test the client
 1. With the server running, open new terminal.
-2. Type `make echosvc-example`. This command will create a new gRPC client of the server run in port 9001. The client will send a Echo request to the server, and get the response from the server.
+2. Type `make echo-client-example`. This command will create a new gRPC client of the server run in port 9001. The client will send a Echo request to the server, and get the response from the server.
 3. You should see something like this:
 ```shell
 INFO[0000] Echo result: i'm screaming

@@ -8,6 +8,23 @@
   revision = "f6152a1bd05565e87729ad672a792b951046d235"
 
 [[projects]]
+  branch = "master"
+  name = "github.com/arangodb/go-driver"
+  packages = [
+    ".",
+    "cluster",
+    "http",
+    "util"
+  ]
+  revision = "ce823339711bda5b592aca6619b30bb2e31b2fd4"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/arangodb/go-velocypack"
+  packages = ["."]
+  revision = "c899a2a2271f97f297fd70afd031e5ffb9497f83"
+
+[[projects]]
   name = "github.com/fsnotify/fsnotify"
   packages = ["."]
   revision = "c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9"
@@ -51,10 +68,7 @@
 [[projects]]
   branch = "master"
   name = "github.com/kumparan/go-lib"
-  packages = [
-    "logger",
-    "utils"
-  ]
+  packages = ["logger"]
   revision = "5d1f20a309f5abc0ff3f82a75e57c193bc83fb91"
 
 [[projects]]
@@ -201,6 +215,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "cf1210981a6c487cccf6883b352f3002bc739aa4920b14ada38f606c9fa2ad3b"
+  inputs-digest = "9777e29fc621af436b4ee2f032129e4c7d311235e9533d77dc5ff7d21476e5d3"
   solver-name = "gps-cdcl"
   solver-version = 1

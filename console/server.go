@@ -7,7 +7,8 @@ import (
 	"github.com/kumparan/go-lib/logger"
 	"github.com/kumparan/kumgo-stack/buff"
 	"github.com/kumparan/kumgo-stack/config"
-	"github.com/kumparan/kumgo-stack/echosvc"
+	"github.com/kumparan/kumgo-stack/repository/connector"
+	"github.com/kumparan/kumgo-stack/storysvc"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 )
@@ -21,6 +22,9 @@ var runCmd = &cobra.Command{
 
 func init() {
 	RootCmd.AddCommand(runCmd)
+	if config.ArangoHost() != "" {
+		connector.ArangoDB = connector.OpenArangoConnection()
+	}
 }
 
 func run(cmd *cobra.Command, args []string) {
@@ -32,7 +36,7 @@ func run(cmd *cobra.Command, args []string) {
 	logger.Info("Listening on ", config.Port())
 
 	server := grpc.NewServer()
-	buff.RegisterEchoServiceServer(server, echosvc.NewServer())
+	buff.RegisterStoryServiceServer(server, storysvc.NewServer())
 
 	if err := server.Serve(lis); err != nil {
 		logger.Fatal("failed to serve: %v", err)

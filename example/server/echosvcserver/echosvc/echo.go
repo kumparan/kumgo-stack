@@ -3,7 +3,7 @@ package echosvc
 import (
 	"context"
 
-	"github.com/kumparan/kumgo-stack/buff"
+	"github.com/kumparan/kumgo-stack/example/server/echosvcserver/buff"
 )
 
 // Echo :nodoc:

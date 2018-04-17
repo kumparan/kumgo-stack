@@ -1,34 +1,39 @@
 package connector
 
 import (
-	"bytes"
-	"io/ioutil"
-	"net/http"
+	"context"
 
+	driver "github.com/arangodb/go-driver"
+	"github.com/arangodb/go-driver/http"
 	"github.com/kumparan/go-lib/logger"
-	"github.com/kumparan/go-lib/utils"
 	"github.com/kumparan/kumgo-stack/config"
 )
 
-// ArangoPost nodoc
-func ArangoPost(query string) (body []byte, err error) {
-	finalQuery := []byte(utils.StandardizeSpaces(query))
+var ArangoDB driver.Database
 
-	req, err := http.NewRequest("POST", config.ArangoHost(), bytes.NewBuffer(finalQuery))
-	req.Header.Set("Content-Type", "application/json")
-	client := &http.Client{}
-
-	resp, err := client.Do(req)
+func OpenArangoConnection() (db driver.Database) {
+	conn, err := http.NewConnection(http.ConnectionConfig{
+		Endpoints: []string{config.ArangoHost()},
+	})
 	if err != nil {
-		logger.Err("Http Post failed: ", err)
+		logger.Err("Connection to Arango Server failed: ", err)
 		return
 	}
-	defer resp.Body.Close()
+	logger.Info("Connection to Arango Server success...")
 
-	body, err = ioutil.ReadAll(resp.Body)
+	client, err := driver.NewClient(driver.ClientConfig{
+		Connection:     conn,
+		Authentication: driver.BasicAuthentication(config.ArangoUsername(), config.ArangoPassword()),
+	})
 	if err != nil {
-		logger.Err("Query arango failed: ", err)
+		logger.Err("Create new arango client failed: ", err)
 	}
+
+	db, err = client.Database(context.Background(), config.ArangoDatabase())
+	if err != nil {
+		logger.Err("Connection to database failed: ", err)
+	}
+	logger.Info("Connection to database success...")
 
 	return
 }

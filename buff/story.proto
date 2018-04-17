@@ -1,0 +1,30 @@
+syntax = "proto3";
+package buff;
+
+message Empty {}
+
+message GetStoriesResponse {
+    repeated Story stories = 1;
+}
+
+message Story {
+    Author author = 1;
+    Editor editor = 2;
+}
+
+message Author {
+    string group = 1;
+    string id = 2;
+    string name = 3;
+    string username = 4;
+}
+
+message Editor {
+    string id = 1;
+    string name = 2;
+    string username = 3;
+}
+
+service StoryService {
+  rpc GetStories(Empty) returns (GetStoriesResponse) {}
+}

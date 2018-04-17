@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/kumparan/go-lib/logger"
-	"github.com/kumparan/kumgo-stack/example/server/echosvcserver/buff"
+	"github.com/kumparan/kumgo-stack/buff"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -22,15 +22,15 @@ func main() {
 		logger.Fatal("did not connect: ", err)
 	}
 	defer conn.Close()
-	c := buff.NewEchoServiceClient(conn)
+	c := buff.NewStoryServiceClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	r, err := c.Echo(ctx, &buff.EchoRequest{Message: "i'm screaming"})
+	r, err := c.GetStories(ctx, &buff.Empty{})
 	if err != nil {
 		logger.Fatal("could not greet: ", err)
 	}
-	logger.Info("Echo result: ", r.Message)
 
+	logger.Info("Echo result: ", r.Stories)
 }
