@@ -65,7 +65,7 @@ INFO : Listening on 9001
 2. Type `make story-client-example`. This command will create a new gRPC client of the server run in port 9001. The client will send a GetStories request to the server, and get the response from the server.
 3. You should see something like this:
 ```shell
-INFO[0000] Echo result: i'm screaming
+INFO : Echo result: [author:<group:"kumparan" id:"22251320" name:"Muhammad Iqbal" username:"mohamad-iqbal" > editor:<id:"22251320" name:"Mohamad Iqbal" username:"mohamad-iqbal" >  author:<id:"10512612" name:"Faisal Faisal" username:"faisal admin" >  author:<group:"kumparan" id:"33363617" name:"Jofie Yordan" username:"jofie-yordan" > editor:<id:"16871000" name:"Aditya Panji" username:"aditya-panji" >  author:<id:"21342092" name:"Faisal F" username:"faisal-f" >  author:<group:"kumparan" id:"36644670" name:"denny armandhanu" username:"denny-armandhanu" > editor:<id:"36644670" name:"Denny Armandhanu" username:"denny-armandhanu" >  author:<group:"kumparan" id:"15416990" name:"Rizki Sunaryo" username:"rizkisunaryo-1" > editor:<id:"54819011" name:"Joan Riffaldy" username:"joan-riffaldy" >  author:<group:"kumparan" id:"44607550" name:"angga sukmawijaya" username:"angga-sukmawijaya" > editor:<id:"44607550" name:"angga sukmawijaya" username:"angga-sukmawijaya" >  author:<id:"10048204" name:"Agung Surya Bangsa" username:"agung-surya" >  author:<group:"kumparan" id:"16871876" name:"Indra Subagja" username:"indra-subagja" > editor:<id:"22261855" name:"Salmah Muslimah" username:"salmah-muslimah" >  author:<id:"76853821" name:"Ganesha Dwi Adynugraha" username:"ganesha-dwi-adynugraha" > ]
 ```
 ## Echo Example (without ArangoDB Connection)
 ### Run the server in your local
@@ -75,12 +75,12 @@ INFO[0000] Echo result: i'm screaming
 4. Run the service using `make echo-server-example`.
 5. You should see something like this:
 ```shell
-INFO[0000] Listening on 9001
+INFO : Listening on 9001
 ```
 ### Test the client
 1. With the server running, open new terminal.
 2. Type `make echo-client-example`. This command will create a new gRPC client of the server run in port 9001. The client will send a Echo request to the server, and get the response from the server.
 3. You should see something like this:
 ```shell
-INFO[0000] Echo result: i'm screaming
+INFO : Echo result: i'm screaming
 ```
